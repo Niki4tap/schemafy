@@ -76,6 +76,8 @@ use proc_macro2::{Span, TokenStream};
 fn replace_invalid_identifier_chars(s: &str) -> String {
     s.strip_prefix('$')
         .unwrap_or(s)
+        .replace('-', "minus_")
+        .replace('+', "plus_")
         .replace(|c: char| !c.is_alphanumeric() && c != '_', "_")
 }
 
